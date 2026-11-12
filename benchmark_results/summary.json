@@ -1,0 +1,136 @@
+{
+  "benchmark": "MerchantPulse controlled synthetic incident benchmark",
+  "date": "2026-10-31",
+  "seed_rule": "normal seeds 0-19; small no-incident seeds 20-39; planted seeds 1200-1259",
+  "dataset_count": 100,
+  "cohort_counts": {
+    "normal": 20,
+    "failure_spike": 20,
+    "refund_burst": 20,
+    "offhours_high_value": 20,
+    "no_incident_small": 20
+  },
+  "incident_detection_rate": 1.0,
+  "incident_cases": 60,
+  "detected_incident_cases": 60,
+  "false_positive_dataset_count": 4,
+  "no_incident_dataset_count": 40,
+  "false_positive_dataset_rate": 0.1,
+  "false_positive_findings": 4,
+  "missed_incidents": [],
+  "false_positive_cases": [
+    {
+      "case_id": "normal-5",
+      "finding_types": "refund_burst",
+      "finding_titles": [
+        "Services refund burst, 20 Aug\u201322 Aug 2026"
+      ]
+    },
+    {
+      "case_id": "normal-15",
+      "finding_types": "refund_burst",
+      "finding_titles": [
+        "Clothing refund burst, 27 Sep\u201329 Sep 2026"
+      ]
+    },
+    {
+      "case_id": "no_incident_small-23",
+      "finding_types": "refund_burst",
+      "finding_titles": [
+        "Clothing refund burst, 17 Oct\u201319 Oct 2026"
+      ]
+    },
+    {
+      "case_id": "no_incident_small-29",
+      "finding_types": "refund_burst",
+      "finding_titles": [
+        "Clothing refund burst, 09 Oct\u201311 Oct 2026"
+      ]
+    }
+  ],
+  "no_incident_100_seed_investigation": {
+    "description": "Supplemental same-size 90-day/650-transaction baseline sweep over seeds 0-99, with no planted incidents.",
+    "case_count": 100,
+    "false_positive_case_count": 5,
+    "false_positive_dataset_rate": 0.05,
+    "cases": [
+      {
+        "seed": 5,
+        "alerts": [
+          {
+            "type": "refund_burst",
+            "title": "Services refund burst, 20 Aug\u201322 Aug 2026",
+            "z_score": 6.0,
+            "summary": "3 of 10 Services transactions were refunded (30% vs a 2% baseline).",
+            "excess_failed_value_usd": 0,
+            "excess_refund_value_usd": 146.74
+          }
+        ]
+      },
+      {
+        "seed": 15,
+        "alerts": [
+          {
+            "type": "refund_burst",
+            "title": "Clothing refund burst, 27 Sep\u201329 Sep 2026",
+            "z_score": 4.5,
+            "summary": "4 of 16 Clothing transactions were refunded (25% vs a 4% baseline).",
+            "excess_failed_value_usd": 0,
+            "excess_refund_value_usd": 217.37
+          }
+        ]
+      },
+      {
+        "seed": 53,
+        "alerts": [
+          {
+            "type": "failure_spike",
+            "title": "PayPal failure spike on 01 Oct 2026",
+            "z_score": 4.8,
+            "summary": "5 of 10 PayPal payments failed (50% vs a 8% baseline).",
+            "excess_failed_value_usd": 268.85,
+            "excess_refund_value_usd": 0
+          }
+        ]
+      },
+      {
+        "seed": 56,
+        "alerts": [
+          {
+            "type": "failure_spike",
+            "title": "PayPal failure spike on 14 Oct 2026",
+            "z_score": 4.7,
+            "summary": "5 of 9 PayPal payments failed (56% vs a 10% baseline).",
+            "excess_failed_value_usd": 419.01,
+            "excess_refund_value_usd": 0
+          }
+        ]
+      },
+      {
+        "seed": 73,
+        "alerts": [
+          {
+            "type": "refund_burst",
+            "title": "Home & Living refund burst, 02 Sep\u201304 Sep 2026",
+            "z_score": 4.6,
+            "summary": "3 of 10 Home & Living transactions were refunded (30% vs a 4% baseline).",
+            "excess_failed_value_usd": 0,
+            "excess_refund_value_usd": 64.73
+          }
+        ]
+      }
+    ],
+    "interpretation": "These alerts are false positives relative to the synthetic no-incident labels. Their patterns are random clusters that cross the configured thresholds; this does not establish whether similar patterns would be actionable in real merchant data."
+  },
+  "financial_value_associated_with_detected_incidents_usd": {
+    "excess_failed_payment_value": 34829.9,
+    "excess_refund_value": 83647.65,
+    "transactions_under_review": 211402.89
+  },
+  "limitations": [
+    "All 100 datasets are synthetic and generated from the project demo-data generator.",
+    "Injected patterns are controlled examples, not representative merchant behavior.",
+    "Financial values are detector-associated amounts, not realised loss, recovered revenue, or causal estimates.",
+    "A case-level hit requires at least one finding of the expected injected type; extra alert types are counted and shown."
+  ]
+}

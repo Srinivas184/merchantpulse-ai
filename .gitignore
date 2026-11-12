@@ -1,0 +1,36 @@
+# Secrets: never commit real credentials. Only .env.example is tracked.
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local payment ledger (contains sandbox payer emails and order/capture IDs)
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Local backups / archives
+*.bak
+*.backup
+*.before_*
+*.pre_gemini_backup
+archive/
+backups/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
